@@ -98,6 +98,7 @@ node generate.js --help
 - **ambient**: Slow, atmospheric soundscapes with organic visuals (80 BPM)
 - **hiphop**: Urban beats with sharp, dynamic graphics (90 BPM)
 - **pop**: Catchy, upbeat melodies with colorful round visuals (120 BPM)
+- **techno**: Fast-paced techno with intense RGB visualizations (140 BPM)
 
 ## Output
 

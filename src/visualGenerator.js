@@ -144,6 +144,13 @@ class VisualGenerator {
         shapeType: 'round',
         particleCount: 60,
         waveAmplitude: 120
+      },
+      techno: {
+        colors: ['#ff0000', '#00ff00', '#0000ff', '#ffffff'],
+        backgroundColor: '#000000',
+        shapeType: 'geometric',
+        particleCount: 70,
+        waveAmplitude: 90
       }
     };
     

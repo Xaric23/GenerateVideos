@@ -58,6 +58,18 @@ class MusicGenerator {
           ['A3', 'C4', 'E4']
         ],
         duration: { min: 180, max: 300 }
+      },
+      techno: {
+        tempo: 140,
+        scale: ['C4', 'D4', 'F4', 'G4', 'A4', 'C5'],
+        bassNotes: ['C2', 'C2', 'D2', 'F2'],
+        chords: [
+          ['C4', 'F4', 'G4'],
+          ['D4', 'F4', 'A4'],
+          ['C4', 'E4', 'G4'],
+          ['F3', 'A3', 'C4']
+        ],
+        duration: { min: 180, max: 300 }
       }
     };
   }

@@ -178,12 +178,13 @@ Usage:
 
 Arguments:
   genre        Music genre (default: electronic)
-               Available: electronic, ambient, hiphop, pop
+               Available: electronic, ambient, hiphop, pop, techno
   output-name  Custom name for output file (optional)
 
 Examples:
   node generate.js electronic
   node generate.js ambient my_ambient_video
+  node generate.js techno high_energy_video
   node generate.js pop cool_pop_music
 
 Options:

@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Output files
+output/
+*.mp4
+*.wav
+*.mp3
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+temp_music_script.js
+concat_list.txt
+
+# Frame directories
+frames/
+intro/
+outro/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*

@@ -1,9 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { exec } = require('child_process');
-const { promisify } = require('util');
-
-const execAsync = promisify(exec);
+const { spawn } = require('child_process');
 
 /**
  * Music Generator Module
@@ -86,22 +83,43 @@ class MusicGenerator {
     
     console.log(`Generating ${genre} music (${duration}s at ${template.tempo} BPM)...`);
     
+    // Validate and sanitize output path
+    const sanitizedOutputPath = path.resolve(outputPath);
+    
     // Create a JavaScript file that will use Tone.js to generate the music
-    const scriptContent = this._generateToneScript(template, duration, outputPath);
-    const scriptPath = path.join(path.dirname(outputPath), 'temp_music_script.js');
+    const scriptContent = this._generateToneScript(template, duration, sanitizedOutputPath);
+    const scriptDir = path.dirname(sanitizedOutputPath);
+    const scriptPath = path.join(scriptDir, 'temp_music_script.js');
     
     fs.writeFileSync(scriptPath, scriptContent);
     
-    // Execute the script with Node.js
+    // Execute the script with Node.js using spawn for better security
     try {
-      await execAsync(`node "${scriptPath}"`);
+      await new Promise((resolve, reject) => {
+        const child = spawn('node', [scriptPath], {
+          stdio: 'inherit'
+        });
+        
+        child.on('close', (code) => {
+          if (code === 0) {
+            resolve();
+          } else {
+            reject(new Error(`Music generation failed with code ${code}`));
+          }
+        });
+        
+        child.on('error', (err) => {
+          reject(err);
+        });
+      });
+      
       fs.unlinkSync(scriptPath); // Clean up temp script
       
       return {
         tempo: template.tempo,
         duration: duration,
         genre: genre,
-        path: outputPath
+        path: sanitizedOutputPath
       };
     } catch (error) {
       if (fs.existsSync(scriptPath)) {

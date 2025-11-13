@@ -169,7 +169,6 @@ class VisualGenerator {
     ctx.fillRect(0, 0, this.width, this.height);
     
     // Animated elements synchronized to beat
-    const beatPhase = (beat % 1);
     const intensity = Math.sin(beat * Math.PI) * 0.5 + 0.5;
     
     // Draw visualizer bars (waveform simulation)

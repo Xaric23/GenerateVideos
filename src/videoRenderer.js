@@ -163,7 +163,7 @@ class VideoRenderer {
       
       // Create concat file list
       const concatListPath = path.join(path.dirname(outputPath), 'concat_list.txt');
-      const fileList = videoPaths.map(p => `file '${path.basename(p)}'`).join('\n');
+      const fileList = videoPaths.map(p => `file '${path.resolve(p)}'`).join('\n');
       fs.writeFileSync(concatListPath, fileList);
       
       ffmpeg()
@@ -230,7 +230,7 @@ class VideoRenderer {
       if (fs.existsSync(introPath)) fs.unlinkSync(introPath);
       if (fs.existsSync(mainPath)) fs.unlinkSync(mainPath);
       if (fs.existsSync(outroPath)) fs.unlinkSync(outroPath);
-      if (fs.existsSync(tempDir)) fs.rmdirSync(tempDir);
+      if (fs.existsSync(tempDir)) fs.rmSync(tempDir, { recursive: true, force: true });
       
       console.log(`\n✓ Video generated successfully: ${outputPath}`);
       
@@ -243,7 +243,7 @@ class VideoRenderer {
       if (fs.existsSync(introPath)) fs.unlinkSync(introPath);
       if (fs.existsSync(mainPath)) fs.unlinkSync(mainPath);
       if (fs.existsSync(outroPath)) fs.unlinkSync(outroPath);
-      if (fs.existsSync(tempDir)) fs.rmdirSync(tempDir);
+      if (fs.existsSync(tempDir)) fs.rmSync(tempDir, { recursive: true, force: true });
       
       throw error;
     }

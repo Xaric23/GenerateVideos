@@ -15,7 +15,7 @@ try {
   console.error('');
   
   if (isWindows) {
-    console.error('⚠️  WINDOWS USERS: If npm install fails with canvas build errors:');
+    console.error("⚠️  WINDOWS USERS: If 'npm install' fails with canvas build errors:");
     console.error('');
     console.error('Option 1 (Recommended): Install Visual Studio Build Tools');
     console.error('  1. Download from: https://visualstudio.microsoft.com/downloads/');

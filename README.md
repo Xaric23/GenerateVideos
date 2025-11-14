@@ -6,7 +6,7 @@ A Node.js application that generates complete music videos (3-5 minutes) with sy
 
 - **Procedural Music Generation**: Synthesizes original music using Tone.js based on genre templates
 - **Animated Visuals**: Creates motion graphics and visualizations synchronized to the music's tempo
-- **Multiple Genres**: Supports Electronic, Ambient, Hip-Hop, and Pop music styles
+- **Multiple Genres**: Supports Electronic, Ambient, Hip-Hop, Pop, and Techno music styles
 - **Intro/Outro**: Automatically adds professional intro and outro sections
 - **YouTube Ready**: Exports as 1920x1080 MP4 files optimized for YouTube
 - **Pure JavaScript**: Built entirely with Node.js and JavaScript libraries
@@ -67,6 +67,7 @@ node generate.js ambient
 node generate.js hiphop
 node generate.js pop
 node generate.js electronic
+node generate.js techno
 ```
 
 ### Custom Output Name

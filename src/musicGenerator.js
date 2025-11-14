@@ -226,7 +226,7 @@ async function generateMusic() {
   const audioData = buffer.toArray();
   const wavBuffer = createWavBuffer(audioData, 44100);
   
-  fs.writeFileSync('${outputPath}', wavBuffer);
+  fs.writeFileSync(${JSON.stringify(outputPath)}, wavBuffer);
   console.log('Music generation complete!');
 }
 
@@ -284,7 +284,7 @@ generateMusic().catch(console.error);
   async analyzeTempo(audioPath) {
     // For generated music, we already know the tempo from the template
     // This is a placeholder for potential future tempo detection
-    return this.currentTempo;
+    throw new Error('Tempo analysis not implemented. Use the tempo from the genre template instead.');
   }
 }
 

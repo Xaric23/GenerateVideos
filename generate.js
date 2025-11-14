@@ -21,7 +21,7 @@ class MusicVideoGenerator {
 
   /**
    * Generate a complete music video
-   * @param {string} genre - Music genre (electronic, ambient, hiphop, pop)
+   * @param {string} genre - Music genre (electronic, ambient, hiphop, pop, techno)
    * @param {string} outputName - Name for the output file (without extension)
    */
   async generate(genre = 'electronic', outputName = null) {
@@ -36,13 +36,14 @@ class MusicVideoGenerator {
     
     // Setup output directories
     const timestamp = Date.now();
-    const videoName = outputName || `music_video_${genre}_${timestamp}`;
-    const projectDir = path.join(this.outputDir, videoName);
+    // Sanitize outputName to prevent path traversal attacks
+    const sanitizedName = outputName ? path.basename(outputName) : `music_video_${genre}_${timestamp}`;
+    const projectDir = path.join(this.outputDir, sanitizedName);
     const framesDir = path.join(projectDir, 'frames');
     const introDir = path.join(projectDir, 'intro');
     const outroDir = path.join(projectDir, 'outro');
     const audioPath = path.join(projectDir, 'audio.wav');
-    const videoPath = path.join(this.outputDir, `${videoName}.mp4`);
+    const videoPath = path.join(this.outputDir, `${sanitizedName}.mp4`);
 
     // Create directories
     [projectDir, framesDir, introDir, outroDir].forEach(dir => {
@@ -137,7 +138,7 @@ class MusicVideoGenerator {
         files.forEach(file => {
           fs.unlinkSync(path.join(fullPath, file));
         });
-        fs.rmdirSync(fullPath);
+        fs.rmSync(fullPath, { recursive: true, force: true });
       }
     });
 
@@ -151,7 +152,7 @@ class MusicVideoGenerator {
     if (fs.existsSync(projectDir)) {
       const remaining = fs.readdirSync(projectDir);
       if (remaining.length === 0) {
-        fs.rmdirSync(projectDir);
+        fs.rmSync(projectDir, { recursive: true, force: true });
       }
     }
   }

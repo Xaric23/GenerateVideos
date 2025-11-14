@@ -1,5 +1,41 @@
 #!/usr/bin/env node
 
+// Check if dependencies are installed
+try {
+  require.resolve('canvas');
+  require.resolve('fluent-ffmpeg');
+  require.resolve('tone');
+} catch (error) {
+  const isWindows = process.platform === 'win32';
+  
+  console.error('❌ Error: Required dependencies are not installed.');
+  console.error('');
+  console.error('Please run the following command to install dependencies:');
+  console.error('  npm install');
+  console.error('');
+  
+  if (isWindows) {
+    console.error("⚠️  WINDOWS USERS: If 'npm install' fails with canvas build errors:");
+    console.error('');
+    console.error('Option 1 (Recommended): Install Visual Studio Build Tools');
+    console.error('  1. Download from: https://visualstudio.microsoft.com/downloads/');
+    console.error('  2. Install "Desktop development with C++" workload');
+    console.error('  3. Restart your terminal and run npm install again');
+    console.error('');
+    console.error('Option 2: Use Node.js v18 LTS (has better pre-built binary support)');
+    console.error('  1. Download from: https://nodejs.org/');
+    console.error('  2. Reinstall Node.js and run npm install again');
+    console.error('');
+  } else {
+    console.error('If npm install fails, you may need to install system dependencies.');
+    console.error('See the README.md for platform-specific instructions.');
+    console.error('');
+  }
+  
+  console.error('For detailed troubleshooting, see README.md');
+  process.exit(1);
+}
+
 const fs = require('fs');
 const path = require('path');
 const MusicGenerator = require('./src/musicGenerator');

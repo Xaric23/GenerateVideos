@@ -47,7 +47,7 @@ The `canvas` package requires native compilation on Windows. You have two option
 
 #### Option 2: Use an Older Node.js Version
 If you prefer not to install Visual Studio Build Tools:
-1. Uninstall Node.js v22.x
+1. Uninstall your current Node.js version (if v20 or higher)
 2. Install [Node.js v18 LTS](https://nodejs.org/) which has better pre-built binary support
 3. Pre-built binaries for canvas are more widely available for LTS versions
 

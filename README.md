@@ -179,7 +179,7 @@ If you see errors about Visual Studio or missing build tools:
    - Run `npm install` again
 
 2. **Alternative: Use Node.js v18 LTS**:
-   - Uninstall your current Node.js version
+   - Uninstall any currently installed Node.js version (especially if using v20 or higher)
    - Install [Node.js v18 LTS](https://nodejs.org/) which has better pre-built binary support
    - Run `npm install` again
 

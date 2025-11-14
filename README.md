@@ -13,8 +13,9 @@ A Node.js application that generates complete music videos (3-5 minutes) with sy
 
 ## Prerequisites
 
-- Node.js (v14 or higher)
+- Node.js (v14 or higher, v18 LTS recommended for Windows users)
 - FFmpeg (for video rendering)
+- **Windows Only**: Visual Studio Build Tools (see Windows-specific instructions below)
 
 ### Installing FFmpeg
 
@@ -31,6 +32,24 @@ brew install ffmpeg
 
 **Windows:**
 Download from [ffmpeg.org](https://ffmpeg.org/download.html) and add to PATH
+
+### Windows-Specific Prerequisites
+
+The `canvas` package requires native compilation on Windows. You have two options:
+
+#### Option 1: Install Visual Studio Build Tools (Recommended)
+1. Download and install [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022)
+2. During installation, select the "Desktop development with C++" workload
+3. This includes:
+   - MSVC C++ build tools
+   - Windows SDK
+   - C++ CMake tools
+
+#### Option 2: Use an Older Node.js Version
+If you prefer not to install Visual Studio Build Tools:
+1. Uninstall Node.js v22.x
+2. Install [Node.js v18 LTS](https://nodejs.org/) which has better pre-built binary support
+3. Pre-built binaries for canvas are more widely available for LTS versions
 
 ## Installation
 
@@ -149,9 +168,34 @@ GenerateVideos/
 - Install FFmpeg following the prerequisites section
 - Ensure FFmpeg is in your system PATH
 
-**Error: Canvas build failed**
+**Error: Canvas build failed (Windows)**
+
+If you see errors about Visual Studio or missing build tools:
+
+1. **Install Visual Studio Build Tools**:
+   - Download [Visual Studio Build Tools 2022](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022)
+   - Run the installer and select "Desktop development with C++" workload
+   - Restart your terminal/command prompt after installation
+   - Run `npm install` again
+
+2. **Alternative: Use Node.js v18 LTS**:
+   - Uninstall your current Node.js version
+   - Install [Node.js v18 LTS](https://nodejs.org/) which has better pre-built binary support
+   - Run `npm install` again
+
+3. **If installation still fails**:
+   - Delete `node_modules` folder and `package-lock.json`
+   - Run `npm cache clean --force`
+   - Run `npm install` again
+
+**Error: Canvas build failed (Linux/macOS)**
 - On Ubuntu/Debian: `sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev`
 - On macOS: `brew install pkg-config cairo pango libpng jpeg giflib librsvg`
+
+**Error: Cannot find module 'canvas'**
+- This means dependencies are not installed
+- Run `npm install` to install all required dependencies
+- See troubleshooting above if npm install fails
 
 **Out of memory errors**
 - Close other applications to free up RAM

@@ -24,7 +24,7 @@ try {
     console.error('');
     console.error('Option 2: Use Node.js v18 LTS (has better pre-built binary support)');
     console.error('  1. Download from: https://nodejs.org/');
-    console.error('  2. Reinstall and run npm install again');
+    console.error('  2. Reinstall Node.js and run npm install again');
     console.error('');
   } else {
     console.error('If npm install fails, you may need to install system dependencies.');
